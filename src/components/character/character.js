@@ -1,60 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Label from "../label/label";
 import Badges from "../badges/badges";
-import { endpoints } from "../../variables";
 import "./character.scss";
+import { getUser, getTotalCharacters } from "./helpers";
 
 const Character = (props) => {
 	const [character, setCharacter] = useState({});
 	const [episodes, setEpisodes] = useState([]);
 	const [totalCharacters, setTotalCharacters] = useState(1);
-
-	const _getUser = () => {
-		try {
-			axios
-				.get(`${endpoints.CHARACTER}${props.match.params.id}`)
-				.then((response) => {
-					const episodesCalls = [];
-					response.data.episode.forEach((url) =>
-						episodesCalls.push(axios.get(url))
-					);
-
-					setCharacter(response.data);
-					_getEpisode(episodesCalls);
-				});
-		} catch (error) {
-			console.log(error);
-			_redirectHome();
-		}
-	};
-
-	const _getEpisode = (urls) => {
-		axios.all(urls).then((response) => {
-			response.map((episode) =>
-				setEpisodes((episodes) => [...episodes, episode.data])
-			);
-		});
-	};
-
-	const _redirectHome = () => {
-		window.location.replace("/");
-	};
-
-	const _getTotalCharacters = async () => {
-		try {
-			const {
-				data: {
-					info: { count }
-				}
-			} = await axios.get(endpoints.GLOBAL);
-			setTotalCharacters(count);
-		} catch (error) {
-			console.log(error.response.data.error);
-		}
-	};
 
 	const _statusManager = (data) => {
 		switch (data) {
@@ -75,12 +30,12 @@ const Character = (props) => {
 	};
 
 	useEffect(() => {
-		_getTotalCharacters();
+		getTotalCharacters(setTotalCharacters);
 	}, []);
 
 	useEffect(() => {
 		_resetState();
-		_getUser(props.match.params.id);
+		getUser(props.match.params.id, setCharacter, setEpisodes);
 	}, [props.match.params.id]);
 
 	if (Object.keys(character).length == 0) {
