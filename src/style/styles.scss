@@ -15,8 +15,12 @@ body,
 
 body {
 	background: url("../images/bg.jpg");
-	background-position: 50% 50%;
+	background-repeat: no-repeat;
 	background-size: cover;
+	
+	@media (min-width: $l) {
+		background-position: 50% 50%;
+	}
 }
 
 .loading {
@@ -35,19 +39,19 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 
-	@media (min-width: 576px) {
+	@media (min-width: $sm) {
 		max-width: 540px;
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: $md) {
 		max-width: 720px;
 	}
 
-	@media (min-width: 992px) {
+	@media (min-width: $l) {
 		max-width: 960px;
 	}
 
-	@media (min-width: 1200px) {
+	@media (min-width: $xl) {
 		max-width: 1140px;
 	}
 }

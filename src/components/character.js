@@ -69,12 +69,17 @@ const Character = (props) => {
 		}
 	};
 
+	const _resetState = () => {
+		setEpisodes([]);
+		setCharacter({});
+	};
+
 	useEffect(() => {
 		_getTotalCharacters();
 	}, []);
 
 	useEffect(() => {
-		setEpisodes([]);
+		_resetState();
 		_getUser(props.match.params.id);
 	}, [props.match.params.id]);
 
