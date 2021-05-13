@@ -16,18 +16,31 @@ const Character = props => {
 	const [totalCharacters, setTotalCharacters] = useState(1);
 
 	const _fetchAPI = async () => {
-		const { data: res } = await axios.get(`https://rickandmortyapi.com/api/character/${props.match.params.id}`);
-		setCharacter(res)
-
-		res.episode.map(async (url) => {
-			const { data: res } = await axios.get(url);
-			setEpisodes(episodes => [...episodes, res]);
-		})
+		try{
+			const { data: res } = await axios.get(`https://rickandmortyapi.com/api/character/${props.match.params.id}`);
+			setCharacter(res)
+	
+			res.episode.map(async (url) => {
+				const { data: res } = await axios.get(url);
+				setEpisodes(episodes => [...episodes, res]);
+			})
+		} catch(error) {
+			console.log(error.response.data.error)
+			_redirectHome();
+		}
 	};
 
+	const _redirectHome = () => {
+		window.location.replace("/");
+	}
+
 	const _getTotalCharacters = async () => {
-		const { data: { info: {count} } } = await axios.get("https://rickandmortyapi.com/api/character");
-		setTotalCharacters(count)
+		try{
+			const { data: { info: {count} } } = await axios.get("https://rickandmortyapi.com/api/character");
+			setTotalCharacters(count)
+		} catch(error) {
+			console.log(error.response.data.error)
+		}
 	}
 
 	const _statusManager = (data) => {
@@ -47,7 +60,7 @@ const Character = props => {
 	}, [props.match.params.id]);
 
 	if (Object.keys(character).length == 0) {
-		return <div>Loading...</div>;
+		return <div className="loading">Loading...</div>;
 	}
 	
 	return(
