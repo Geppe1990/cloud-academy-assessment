@@ -7,7 +7,7 @@ const config = {
 	entry: ["react-hot-loader/patch", "./src/index.js"],
 	output: {
 		// eslint-disable-next-line no-undef
-		path: path.resolve(__dirname, "dist"),
+		path: path.resolve("dist"),
 		filename: "bundle.js"
 	},
 	module: {
@@ -20,6 +20,17 @@ const config = {
 			{
 				test: /\.scss$/,
 				use: ["style-loader", "css-loader", "sass-loader"]
+			},
+			{
+				test: /\.jpg$/,
+				use: [
+					{
+						loader: "url-loader",
+						options: {
+							mimetype: "image/jpg"
+						}
+					}
+				]
 			}
 		]
 	},
@@ -30,7 +41,8 @@ const config = {
 		}
 	},
 	devServer: {
-		contentBase: "./dist"
+		contentBase: "dist",
+		historyApiFallback: true
 	}
 };
 

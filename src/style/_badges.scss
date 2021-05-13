@@ -1,0 +1,48 @@
+@import "./_variables.scss";
+
+.badges {
+	min-height: 200px;
+	text-align: center;
+
+	h2 {
+		text-transform: uppercase;
+	}
+
+	[data-episode] {
+		display: inline-block;
+		padding: .25em .4em;
+		font-size: 75%;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: baseline;
+		border-radius: .25rem;
+		margin-right: .4em;
+		margin-bottom: .4em;
+
+		&[data-episode^="S01"] {
+			color: $white;
+			background-color: $orange;
+			order: 1;
+		}
+	
+		&[data-episode^="S02"] {
+			color: $white;
+			background: $brown;
+			order: 2;
+		}
+		
+		&[data-episode^="S03"] {
+			color: $white;
+			background: $green;
+			order: 3;
+		}
+		
+		&[data-episode^="S04"] {
+			color: $white;
+			background: $pink;
+			order: 4;
+		}
+	}
+}	

@@ -1,11 +1,16 @@
+/* eslint-disable prettier/prettier */
 import React from "react";
 import { hot } from "react-hot-loader/root";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Character from './components/character'
+import Home from './components/home'
 
 const App = () => {
 	return (
-		<>
-			<h1>Title</h1>
-		</>
+		<Router>
+			<Route exact path="/" component={Home} />
+			<Route path="/character/:id" component={Character} />
+		</Router>
 	);
 };
 
