@@ -3,6 +3,8 @@
 .pagination {
 	display: inline-flex;
 	padding: 0;
+	flex-wrap: wrap;
+	justify-content: center;
 
 	&__next,
 	&__prev {
