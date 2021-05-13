@@ -22,13 +22,8 @@ const Character = (props) => {
 		}
 	};
 
-	const _resetState = () => {
-		setEpisodes([]);
-		setCharacter({});
-	};
-
 	useEffect(() => {
-		_resetState();
+		setEpisodes([]);
 		getUser(props.match.params.id, setCharacter, setEpisodes);
 	}, [props.match.params.id]);
 
