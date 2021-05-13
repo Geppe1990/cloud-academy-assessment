@@ -15,20 +15,27 @@ const Character = props => {
 	const [episodes, setEpisodes] = useState([]);
 	const [totalCharacters, setTotalCharacters] = useState(1);
 
-	const _fetchAPI = async () => {
+	const _getUser = () => {
 		try{
-			const { data: res } = await axios.get(`https://rickandmortyapi.com/api/character/${props.match.params.id}`);
-			setCharacter(res)
-	
-			res.episode.map(async (url) => {
-				const { data: res } = await axios.get(url);
-				setEpisodes(episodes => [...episodes, res]);
-			})
+			axios.get(`https://rickandmortyapi.com/api/character/${props.match.params.id}`)
+				.then(response => {
+					const episodesCalls = []
+					response.data.episode.forEach(url => episodesCalls.push(axios.get(url)))
+
+					setCharacter(response.data)
+					_getEpisode(episodesCalls)
+				})
 		} catch(error) {
-			console.log(error.response.data.error)
+			console.log(error)
 			_redirectHome();
 		}
 	};
+
+	const _getEpisode = (urls) => {
+		axios.all(urls).then(response => {
+			response.map((episode) => setEpisodes(episodes => [...episodes, episode.data]))
+		})
+	}
 
 	const _redirectHome = () => {
 		window.location.replace("/");
@@ -44,10 +51,16 @@ const Character = props => {
 	}
 
 	const _statusManager = (data) => {
-		if(data == "Alive") { return <span className="status alive"></span> }
-		if(data == "Dead") { return <span className="status dead"></span> }
-		if(data == "unknown") { return <span className="status unknown"></span> }
-		return null
+		switch (data) {
+			case "Alive":
+				return <span className="status alive"></span>
+			case "Dead":
+				return <span className="status dead"></span>
+			case "unknown":
+				return <span className="status unknown"></span>
+			default:
+				return null
+		}
 	}
 
 	useEffect(() => {
@@ -56,7 +69,7 @@ const Character = props => {
 	
 	useEffect(() => {
 		setEpisodes([])
-		_fetchAPI(props.match.params.id);
+		_getUser(props.match.params.id);
 	}, [props.match.params.id]);
 
 	if (Object.keys(character).length == 0) {
