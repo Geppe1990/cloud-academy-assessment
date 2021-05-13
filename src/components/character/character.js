@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Label from "./label.js";
-import Badges from "./badges.js";
-import { endpoints } from "../variables";
-import "../style/_character.scss";
+import Label from "../label/label";
+import Badges from "../badges/badges";
+import { endpoints } from "../../variables";
+import "./character.scss";
 
 const Character = (props) => {
 	const [character, setCharacter] = useState({});

@@ -2,8 +2,8 @@
 import React from "react";
 import { hot } from "react-hot-loader/root";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Character from './components/character'
-import Home from './components/home'
+import Character from './components/character/character'
+import Home from './components/home/home'
 
 const App = () => {
 	return (
