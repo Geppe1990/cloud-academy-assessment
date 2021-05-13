@@ -20,6 +20,7 @@
 		border-radius: .25rem;
 		margin-right: .4em;
 		margin-bottom: .4em;
+		background-color: $black;
 
 		&[data-episode^="S01"] {
 			color: $white;

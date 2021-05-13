@@ -30,6 +30,13 @@ const Character = props => {
 		setTotalCharacters(count)
 	}
 
+	const _statusManager = (data) => {
+		if(data == "Alive") { return <span className="status alive"></span> }
+		if(data == "Dead") { return <span className="status dead"></span> }
+		if(data == "unknown") { return <span className="status unknown"></span> }
+		return null
+	}
+
 	useEffect(() => {
 		_getTotalCharacters()
 	}, []);
@@ -69,6 +76,7 @@ const Character = props => {
 						<Label 
 							label={"Status: "} 
 							data={character.status}
+							additionalData={_statusManager(character.status)}
 						/>
 						<Label 
 							label={"Species: "} 
@@ -92,7 +100,7 @@ const Character = props => {
 						/>
 					</div>
 				</div>
-				<Badges keys={episodes} />
+				<Badges keys={episodes} title={"Appears in: "} />
 			</div>
 		</div>
 	)

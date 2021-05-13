@@ -3,10 +3,10 @@
 import React from 'react';
 import "../style/_badges.scss";
 
-const Badges = ({keys}) => {
+const Badges = ({keys, title}) => {
 	return(
 		<div className="badges">
-			<h2>Compare in: </h2>
+			<h2>{title}</h2>
 			{keys.map((key, index) => (
 				<span key={index} data-episode={key.episode}>
 					{key.name}

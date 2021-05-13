@@ -2,8 +2,8 @@
 
 .character {
 	text-align: center;
-	background: rgba(0, 0, 0, 0.3);
-	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 6px;
 	font-family: 'Roboto Mono', monospace;
 	color: $white;
 	padding: 30px;
@@ -12,6 +12,31 @@
 	&__data {
 		text-align: left;
 		padding: 0 20px;
+
+		p {
+			span:first-child {
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+		}
+
+		.status {
+			display: inline-block;
+			height: 8px;
+			width: 8px;
+			margin-right: 0.375rem;
+			border-radius: 50%;
+			background: gray;
+			border: 1px solid $white;
+
+			&.alive {
+				background: $green;
+			}
+			
+			&.dead {
+				background: $red;
+			}
+		}
 	}
 
 	&__wrapper {
@@ -26,7 +51,7 @@
 		position: absolute;
 		top: 50%;
 		font-size: 32px;
-		color: $black;
+		color: $white;
 	}
 
 	&__next {

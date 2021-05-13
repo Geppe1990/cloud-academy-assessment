@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 
-const Label = ({label, data, tag}) => {
+const Label = ({label, data, tag, additionalData}) => {
 	switch (tag) {
 		case "h1":
 			return <h1>{data}</h1>;
@@ -10,7 +10,9 @@ const Label = ({label, data, tag}) => {
 			return(
 				data && label && !tag ?
 					<p>
-						<span>{label}</span>{data}
+						<span>{label}</span>
+						{additionalData}
+						{data}
 					</p>
 				: null
 			)
