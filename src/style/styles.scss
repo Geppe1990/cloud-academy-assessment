@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./typography";
 
 html,
 body,
@@ -16,7 +17,6 @@ body {
 	background: url("../images/bg.jpg");
 	background-position: 50% 50%;
 	background-size: cover;
-	font-family: $font-primary;
 }
 
 .loading {
