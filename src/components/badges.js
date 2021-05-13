@@ -1,10 +1,8 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable prettier/prettier */
-import React from 'react';
+import React from "react";
 import "../style/_badges.scss";
 
-const Badges = ({keys, title}) => {
-	return(
+const Badges = ({ keys, title }) => {
+	return (
 		<div className="badges">
 			<h2>{title}</h2>
 			{keys.map((key, index) => (
@@ -13,7 +11,7 @@ const Badges = ({keys, title}) => {
 				</span>
 			))}
 		</div>
-	)
-}
+	);
+};
 
 export default Badges;

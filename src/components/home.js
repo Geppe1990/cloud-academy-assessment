@@ -1,12 +1,7 @@
-/* eslint-disable prettier/prettier */
-import React from 'react';
+import React from "react";
 
 const Home = () => {
-	return(
-		<>
-			Homepage
-		</>
-	)
-}
+	return <>Homepage</>;
+};
 
 export default Home;
