@@ -30,9 +30,7 @@ export const getTotalCharacters = (setTotalCharacters) => {
 
 const _getEpisode = (urls, setEpisodes) => {
 	axios.all(urls).then((response) => {
-		response.map((episode) =>
-			setEpisodes((episodes) => [...episodes, episode.data])
-		);
+		setEpisodes(response);
 	});
 };
 

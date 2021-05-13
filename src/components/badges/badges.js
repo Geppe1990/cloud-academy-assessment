@@ -7,8 +7,8 @@ const Badges = ({ keys, title }) => {
 			<h2>{title}</h2>
 			{keys.length > 0
 				? keys.map((key, index) => (
-						<span key={index} data-episode={key.episode}>
-							{key.name}
+						<span key={index} data-episode={key.data.episode}>
+							{key.data.name}
 						</span>
 				  ))
 				: null}

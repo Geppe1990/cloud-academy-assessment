@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import "./character.scss";
 import { getUser } from "./helpers";
 
-const Character = (props) => {
+const Character = () => {
 	const [character, setCharacter] = useState({});
 	const [episodes, setEpisodes] = useState([]);
+	const { id } = useParams();
 
 	const _statusManager = (data) => {
 		switch (data) {
@@ -23,11 +25,10 @@ const Character = (props) => {
 	};
 
 	useEffect(() => {
-		setEpisodes([]);
-		getUser(props.match.params.id, setCharacter, setEpisodes);
-	}, [props.match.params.id]);
+		getUser(id, setCharacter, setEpisodes);
+	}, [id]);
 
-	if (Object.keys(character).length == 0) {
+	if (Object.keys(character).length == 0 || episodes.length == 0) {
 		return <div className="loading">Loading...</div>;
 	}
 
@@ -58,7 +59,7 @@ const Character = (props) => {
 					</div>
 				</div>
 				<Badges keys={episodes} title={"Appears in: "} />
-				<Pagination id={props.match.params.id} />
+				<Pagination id={id} />
 			</div>
 		</div>
 	);

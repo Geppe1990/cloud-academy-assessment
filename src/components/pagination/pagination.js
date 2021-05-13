@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { endpoints } from "../../variables";
+import { getcurrentPage, hasPrev, hasNext } from "./helpers";
+
 import "./pagination.scss";
 
 const Pagination = ({ id }) => {
@@ -10,31 +10,12 @@ const Pagination = ({ id }) => {
 	const [totalCharacters, setTotalCharacters] = useState(1);
 
 	useEffect(() => {
-		getcurrentPage();
+		getcurrentPage(id, setPages, setTotalCharacters);
 	}, [id]);
-
-	const getcurrentPage = () => {
-		const currentPage = id / 20 < 0 ? 1 : Math.ceil(id / 20);
-
-		axios
-			.get(`${endpoints.CHARACTER}?page=${currentPage}`)
-			.then((response) => {
-				setPages(response.data.results);
-				setTotalCharacters(response.data.info.count);
-			});
-	};
-
-	const _hasPrev = () => {
-		return parseInt(id) - 1 <= 0;
-	};
-
-	const _hasNext = () => {
-		return parseInt(id) + 1 > totalCharacters;
-	};
 
 	return (
 		<ul className="pagination">
-			{pages.length > 0 && _hasPrev ? (
+			{pages.length > 0 && hasPrev(id) ? (
 				<li className={"pagination__prev"}>
 					<Link to={`/character/${parseInt(id) - 1}`}>
 						<FaChevronLeft />
@@ -48,7 +29,7 @@ const Pagination = ({ id }) => {
 					</Link>
 				</li>
 			))}
-			{pages.length > 0 && _hasNext ? (
+			{pages.length > 0 && hasNext(id, totalCharacters) ? (
 				<li>
 					<Link
 						className={"pagination__next"}
