@@ -20,12 +20,9 @@ export const getUser = (id, setCharacter, setEpisodes) => {
 
 export const getTotalCharacters = (setTotalCharacters) => {
 	try {
-		const {
-			data: {
-				info: { count }
-			}
-		} = axios.get(endpoints.GLOBAL);
-		setTotalCharacters(count);
+		axios.get(endpoints.GLOBAL).then((response) => {
+			setTotalCharacters(response.data.info.count);
+		});
 	} catch (error) {
 		console.log(error);
 	}
