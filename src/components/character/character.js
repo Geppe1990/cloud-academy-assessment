@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
+import Notfound from "../notfound/notfound";
 import "./character.scss";
 import { getUser } from "./helpers";
 
@@ -28,8 +29,8 @@ const Character = () => {
 		getUser(id, setCharacter, setEpisodes);
 	}, [id]);
 
-	if (Object.keys(character).length == 0 || episodes.length == 0) {
-		return <div className="loading">Loading...</div>;
+	if (Object.keys(character).length == 0) {
+		return <Notfound />;
 	}
 
 	return (

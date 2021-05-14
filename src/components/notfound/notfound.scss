@@ -1,0 +1,13 @@
+@import "/src/style/variables";
+
+.notfound {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	span {
+		font-size: 4rem;
+		color: $white;
+	}
+}
