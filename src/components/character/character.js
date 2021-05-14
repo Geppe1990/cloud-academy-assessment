@@ -55,8 +55,8 @@ const Character = () => {
 					</div>
 				</div>
 				<Badges keys={episodes} title={"Appears in: "} />
-				<Pagination id={id} />
 			</div>
+			<Pagination id={id} />
 		</div>
 	);
 };
