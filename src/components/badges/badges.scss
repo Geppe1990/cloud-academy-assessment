@@ -10,16 +10,16 @@
 
 	[data-episode] {
 		display: inline-block;
-		padding: .25em .4em;
+		padding: 3px 5px;
 		font-size: 75%;
 		font-weight: 700;
 		line-height: 1;
 		text-align: center;
 		white-space: nowrap;
 		vertical-align: baseline;
-		border-radius: .25rem;
-		margin-right: .4em;
-		margin-bottom: .4em;
+		border-radius: 4px;
+		margin-right: 5px;
+		margin-bottom: 5px;
 		background-color: $black;
 
 		&[data-episode^="S01"] {
