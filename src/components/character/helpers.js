@@ -1,7 +1,7 @@
 import axios from "axios";
 import { endpoints } from "../../variables";
 
-export const getUser = (id, setCharacter, setEpisodes) => {
+export const getUser = (id, setCharacter, setEpisodes, setErrorMessage) => {
 	axios
 		.get(`${endpoints.CHARACTER}${id}`)
 		.then((response) => {
@@ -11,37 +11,23 @@ export const getUser = (id, setCharacter, setEpisodes) => {
 			);
 
 			setCharacter(response.data);
-			_getEpisodes(episodesCalls, setEpisodes);
+			_getEpisodes(episodesCalls, setEpisodes, setErrorMessage);
 		})
 		.catch((error) => {
 			if (error.response) {
 				console.log(error.response.data);
+				setErrorMessage(error.response.data.error);
 			} else if (error.request) {
 				console.log(error.request);
+				setErrorMessage(error.request);
 			} else {
 				console.log("Error", error.message);
+				setErrorMessage(error.message);
 			}
 		});
 };
 
-export const getTotalCharacters = (setTotalCharacters) => {
-	axios
-		.get(endpoints.GLOBAL)
-		.then((response) => {
-			setTotalCharacters(response.data.info.count);
-		})
-		.catch((error) => {
-			if (error.response) {
-				console.log(error.response.data);
-			} else if (error.request) {
-				console.log(error.request);
-			} else {
-				console.log("Error", error.message);
-			}
-		});
-};
-
-const _getEpisodes = (urls, setEpisodes) => {
+const _getEpisodes = (urls, setEpisodes, setErrorMessage) => {
 	axios
 		.all(urls)
 		.then((response) => {
@@ -50,10 +36,13 @@ const _getEpisodes = (urls, setEpisodes) => {
 		.catch((error) => {
 			if (error.response) {
 				console.log(error.response.data);
+				setErrorMessage(error.response.data.error);
 			} else if (error.request) {
 				console.log(error.request);
+				setErrorMessage(error.request);
 			} else {
 				console.log("Error", error.message);
+				setErrorMessage(error.message);
 			}
 		});
 };

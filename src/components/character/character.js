@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
-import Notfound from "../notfound/notfound";
+import Notification from "../notification/notification";
 import "./character.scss";
 import { getUser } from "./helpers";
 
 const Character = () => {
 	const [character, setCharacter] = useState({});
 	const [episodes, setEpisodes] = useState([]);
+	const [errorMessage, setErrorMessage] = useState("");
 	const { id } = useParams();
 
 	const _statusManager = (data) => {
@@ -26,11 +27,15 @@ const Character = () => {
 	};
 
 	useEffect(() => {
-		getUser(id, setCharacter, setEpisodes);
+		getUser(id, setCharacter, setEpisodes, setErrorMessage);
 	}, [id]);
 
-	if (Object.keys(character).length == 0) {
-		return <Notfound />;
+	if (Object.keys(character).length == 0 && !errorMessage) {
+		return <Notification message={"Loading..."} type={"alert"} />;
+	}
+
+	if (errorMessage && errorMessage.length != 0) {
+		return <Notification message={errorMessage} type={"error"} />;
 	}
 
 	return (

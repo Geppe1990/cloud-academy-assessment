@@ -17,23 +17,21 @@ const Pagination = ({ id }) => {
 		<ul className="pagination">
 			{pages.length > 0 && hasPrev(id) ? (
 				<li className={"pagination__prev"}>
-					<Link to={`/character/${parseInt(id) - 1}`}>
+					<Link to={`/${parseInt(id) - 1}`}>
 						<FaChevronLeft />
 					</Link>
 				</li>
 			) : null}
 			{pages.map((page, index) => (
 				<li className={page.id == id ? "current" : null} key={index}>
-					<Link to={`/character/${parseInt(page.id)}`}>
-						{page.id}
-					</Link>
+					<Link to={`/${parseInt(page.id)}`}>{page.id}</Link>
 				</li>
 			))}
 			{pages.length > 0 && hasNext(id, totalCharacters) ? (
 				<li>
 					<Link
 						className={"pagination__next"}
-						to={`/character/${parseInt(id) + 1}`}
+						to={`/${parseInt(id) + 1}`}
 					>
 						<FaChevronRight />
 					</Link>

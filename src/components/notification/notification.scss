@@ -1,13 +1,23 @@
 @import "/src/style/variables";
 
-.notfound {
+.notification {
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+
+	&.error {
+		span {
+			color: $red;
+		}
+	}
 
 	span {
 		font-size: 4rem;
 		color: $white;
+		text-transform: uppercase;
+		text-align: center;
+		margin-bottom: 20px;
 	}
 }
