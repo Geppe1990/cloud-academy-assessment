@@ -5,7 +5,7 @@ import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
 import "./character.scss";
-import { getUser } from "./helpers";
+import { getUser } from "../../helpers";
 
 const Character = () => {
 	const [character, setCharacter] = useState({});

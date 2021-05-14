@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { getcurrentPage, hasPrev, hasNext } from "./helpers";
+import { getcurrentPage, hasPrev, hasNext } from "../../helpers";
 
 import "./pagination.scss";
 
