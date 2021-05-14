@@ -1,5 +1,5 @@
 import { endpoints } from "../../variables";
-import { fetch, fetchAll } from "../../helpers";
+import { get, getAll } from "../../helpers";
 import axios from "axios";
 
 export const getUser = (
@@ -8,7 +8,7 @@ export const getUser = (
 	callbackEpisodes,
 	callbackError
 ) => {
-	fetch(
+	get(
 		`${endpoints.CHARACTER}${id}`,
 		(response) => {
 			const episodesCalls = [];
@@ -23,8 +23,16 @@ export const getUser = (
 	);
 };
 
+export const hasCharacter = (character) => {
+	return Object.keys(character).length == 0;
+};
+
+export const hasError = (errorMessage) => {
+	return errorMessage && errorMessage.length != 0;
+};
+
 const _getEpisodes = (urls, episodesCallback, errorCallback) => {
-	fetchAll(
+	getAll(
 		urls,
 		(response) => {
 			episodesCallback(response);

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const hasPrev = (id) => !(parseInt(id) <= 1);
-export const hasNext = (id, characters) => !(parseInt(id) >= characters);
+export const hasNext = (id, characters) => !(parseInt(id) == characters);
 
-export const fetch = (url, callback, errorCallback) => {
+export const get = (url, callback, errorCallback) => {
 	axios
 		.get(url)
 		.then((response) => {
@@ -12,7 +12,7 @@ export const fetch = (url, callback, errorCallback) => {
 		.catch((error) => _errorsManager(error, errorCallback));
 };
 
-export const fetchAll = (urls, callback, errorCallback) => {
+export const getAll = (urls, callback, errorCallback) => {
 	axios
 		.all(urls)
 		.then((response) => {

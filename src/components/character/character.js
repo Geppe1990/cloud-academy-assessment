@@ -4,7 +4,7 @@ import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
-import { getUser } from "./helpers";
+import { getUser, hasCharacter, hasError } from "./helpers";
 import "./character.scss";
 
 const Character = () => {
@@ -20,11 +20,13 @@ const Character = () => {
 		getUser(id, setCharacter, setEpisodes, setErrorMessage);
 	}, [id]);
 
-	if (Object.keys(character).length == 0 && !errorMessage)
-		<Notification message={"Loading..."} type={"alert"} />;
+	if (hasCharacter(character)) {
+		return <Notification message={"Loading..."} type={"alert"} />;
+	}
 
-	if (errorMessage && errorMessage.length != 0)
-		<Notification message={errorMessage} type={"error"} />;
+	if (hasError(errorMessage)) {
+		return <Notification message={errorMessage} type={"error"} />;
+	}
 
 	return (
 		<div className="container">
