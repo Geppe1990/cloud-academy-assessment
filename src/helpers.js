@@ -1,53 +1,78 @@
 import axios from "axios";
 import { endpoints } from "./variables";
 
-export const getUser = (id, setCharacter, setEpisodes, setErrorMessage) => {
-	axios
-		.get(`${endpoints.CHARACTER}${id}`)
-		.then((response) => {
+export const getUser = (
+	id,
+	callbackCharacter,
+	callbackEpisodes,
+	callbackError
+) => {
+	_fetch(
+		`${endpoints.CHARACTER}${id}`,
+		(response) => {
 			const episodesCalls = [];
 			response.data.episode.forEach((url) =>
 				episodesCalls.push(axios.get(url))
 			);
 
-			setCharacter(response.data);
-			_getEpisodes(episodesCalls, setEpisodes, setErrorMessage);
-		})
-		.catch((error) => _errorsManager(error, setErrorMessage));
+			callbackCharacter(response.data);
+			_getEpisodes(episodesCalls, callbackEpisodes, callbackError);
+		},
+		callbackError
+	);
 };
 
 export const getcurrentPage = (
 	id,
-	setPages,
-	setTotalCharacters,
-	setErrorMessage
+	callbackPages,
+	callbackCharacters,
+	callbackError
 ) => {
 	const currentPage = id / 20 < 0 ? 1 : Math.ceil(id / 20);
 
-	axios
-		.get(`${endpoints.CHARACTER}?page=${currentPage}`)
-		.then((response) => {
-			setPages(response.data.results);
-			setTotalCharacters(response.data.info.count);
-		})
-		.catch((error) => _errorsManager(error, setErrorMessage));
+	_fetch(
+		`${endpoints.CHARACTER}?page=${currentPage}`,
+		(response) => {
+			callbackPages(response.data.results);
+			callbackCharacters(response.data.info.count);
+		},
+		callbackError
+	);
 };
 
 export const hasPrev = (id) => !(parseInt(id) <= 1);
-export const hasNext = (id, totalCharacters) =>
-	!(parseInt(id) >= totalCharacters);
+export const hasNext = (id, characters) => !(parseInt(id) >= characters);
+
+const _fetch = (url, callback, errorCallback) => {
+	axios
+		.get(url)
+		.then((response) => {
+			callback(response);
+		})
+		.catch((error) => _errorsManager(error, errorCallback));
+};
+
+const _fetchAll = (urls, callback, errorCallback) => {
+	axios
+		.all(urls)
+		.then((response) => {
+			callback(response);
+		})
+		.catch((error) => _errorsManager(error, errorCallback));
+};
 
 const _redirectHome = () => {
 	window.location.replace("/");
 };
 
-const _getEpisodes = (urls, setEpisodes, setErrorMessage) => {
-	axios
-		.all(urls)
-		.then((response) => {
-			setEpisodes(response);
-		})
-		.catch((error) => _errorsManager(error, setErrorMessage));
+const _getEpisodes = (urls, episodesCallback, errorCallback) => {
+	_fetchAll(
+		urls,
+		(response) => {
+			episodesCallback(response);
+		},
+		errorCallback
+	);
 };
 
 const _errorsManager = (error, callback) => {
