@@ -1,12 +1,13 @@
 import React from "react";
 import "./home.scss";
 import Cta from "../cta/cta";
+import Label from "../label/label";
 
 const Home = () => {
 	return (
 		<div className="container">
 			<div className="home">
-				<h1>Cloud Academy Assessment</h1>
+				<Label tag={"h1"} data={"Cloud Academy Assessment"}></Label>
 				<Cta text={"Go to the first character"} link={"/1"} />
 			</div>
 		</div>

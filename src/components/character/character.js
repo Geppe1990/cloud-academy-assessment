@@ -4,8 +4,8 @@ import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
+import { getUser } from "./helpers";
 import "./character.scss";
-import { getUser } from "../../helpers";
 
 const Character = () => {
 	const [character, setCharacter] = useState({});
@@ -13,30 +13,18 @@ const Character = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const { id } = useParams();
 
-	const _statusManager = (data) => {
-		switch (data) {
-			case "Alive":
-				return <span className="status alive"></span>;
-			case "Dead":
-				return <span className="status dead"></span>;
-			case "unknown":
-				return <span className="status unknown"></span>;
-			default:
-				return null;
-		}
-	};
+	const _statusManager = (data) =>
+		data ? <span className={`status ${data.toLowerCase()}`}></span> : null;
 
 	useEffect(() => {
 		getUser(id, setCharacter, setEpisodes, setErrorMessage);
 	}, [id]);
 
-	if (Object.keys(character).length == 0 && !errorMessage) {
-		return <Notification message={"Loading..."} type={"alert"} />;
-	}
+	if (Object.keys(character).length == 0 && !errorMessage)
+		<Notification message={"Loading..."} type={"alert"} />;
 
-	if (errorMessage && errorMessage.length != 0) {
-		return <Notification message={errorMessage} type={"error"} />;
-	}
+	if (errorMessage && errorMessage.length != 0)
+		<Notification message={errorMessage} type={"error"} />;
 
 	return (
 		<div className="container">
