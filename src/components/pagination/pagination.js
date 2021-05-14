@@ -31,9 +31,11 @@ const Pagination = ({ id }) => {
 		);
 	};
 
-	return errorMessage && errorMessage.length != 0 ? (
-		<div className="error">{errorMessage}</div>
-	) : (
+	if (errorMessage && errorMessage.length != 0) {
+		return;
+	}
+
+	return (
 		<ul className="pagination">
 			{pages.length > 0 && hasPrev(id) ? _arrowManager("prev") : null}
 			{pages.map((page, index) => (
