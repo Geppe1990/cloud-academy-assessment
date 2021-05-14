@@ -1,15 +1,12 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-const webpack = require("webpack");
 const path = require("path");
 
 const config = {
 	entry: ["react-hot-loader/patch", "./src/index.js"],
 	output: {
-		// eslint-disable-next-line no-undef
 		path: path.resolve("dist"),
 		filename: "bundle.js"
 	},
+	devtool: "source-map",
 	module: {
 		rules: [
 			{
