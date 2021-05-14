@@ -8,12 +8,15 @@ import "./pagination.scss";
 const Pagination = ({ id }) => {
 	const [pages, setPages] = useState([]);
 	const [totalCharacters, setTotalCharacters] = useState(1);
+	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-		getcurrentPage(id, setPages, setTotalCharacters);
+		getcurrentPage(id, setPages, setTotalCharacters, setErrorMessage);
 	}, [id]);
 
-	return (
+	return errorMessage && errorMessage.length != 0 ? (
+		<div className="error">{errorMessage}</div>
+	) : (
 		<ul className="pagination">
 			{pages.length > 0 && hasPrev(id) ? (
 				<li className={"pagination__prev"}>

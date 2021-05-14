@@ -16,10 +16,10 @@ export const getUser = (id, setCharacter, setEpisodes, setErrorMessage) => {
 		.catch((error) => {
 			if (error.response) {
 				console.log(error.response.data);
-				setErrorMessage(error.response.data.error);
+				_redirectHome();
 			} else if (error.request) {
 				console.log(error.request);
-				setErrorMessage(error.request);
+				_redirectHome();
 			} else {
 				console.log("Error", error.message);
 				setErrorMessage(error.message);
@@ -36,13 +36,17 @@ const _getEpisodes = (urls, setEpisodes, setErrorMessage) => {
 		.catch((error) => {
 			if (error.response) {
 				console.log(error.response.data);
-				setErrorMessage(error.response.data.error);
+				_redirectHome();
 			} else if (error.request) {
 				console.log(error.request);
-				setErrorMessage(error.request);
+				_redirectHome();
 			} else {
 				console.log("Error", error.message);
 				setErrorMessage(error.message);
 			}
 		});
+};
+
+const _redirectHome = () => {
+	window.location.replace("/");
 };
