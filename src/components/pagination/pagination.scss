@@ -22,15 +22,12 @@
 		display: flex;
 		align-items: center;
 
-		&.current {
-			font-weight: bold;
-		}
-
 		a {
 			color: $white;
 			text-decoration: none;
 			display: flex;
 
+			&.current,
 			&:hover {
 				font-weight: bold;
 			}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { hasPrev, hasNext } from "../../helpers";
 import { getcurrentPage } from "./helpers";
+import { NavLink } from "react-router-dom";
+
 import "./pagination.scss";
 
 const Pagination = ({ id }) => {
@@ -24,9 +25,9 @@ const Pagination = ({ id }) => {
 
 		return (
 			<li className={`pagination__${direction}`}>
-				<Link to={link}>
+				<NavLink to={link} activeClassName="current">
 					{isPrev ? <FaChevronLeft /> : <FaChevronRight />}
-				</Link>
+				</NavLink>
 			</li>
 		);
 	};
@@ -39,8 +40,13 @@ const Pagination = ({ id }) => {
 		<ul className="pagination">
 			{pages.length > 0 && hasPrev(id) ? _arrowManager("prev") : null}
 			{pages.map((page, index) => (
-				<li className={page.id == id ? "current" : null} key={index}>
-					<Link to={`/${parseInt(page.id)}`}>{page.id}</Link>
+				<li key={index}>
+					<NavLink
+						to={`/${parseInt(page.id)}`}
+						activeClassName="current"
+					>
+						{page.id}
+					</NavLink>
 				</li>
 			))}
 			{pages.length > 0 && hasNext(id, totalCharacters)
