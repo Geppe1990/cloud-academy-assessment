@@ -18,6 +18,10 @@
 
 		p {
 			margin-top: 16px;
+
+			&:first-child {
+				margin-top: 0;
+			}
 			
 			span:first-child {
 				font-weight: bold;
