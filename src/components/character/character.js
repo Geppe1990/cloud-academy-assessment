@@ -4,6 +4,7 @@ import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
+import Location from "../location/location";
 import { getUser, hasCharacter, hasError } from "./helpers";
 import "./character.scss";
 
@@ -48,12 +49,9 @@ const Character = () => {
 							label={"Origin: "}
 							data={character.origin.name}
 						/>
-						<Label
-							label={"Location: "}
-							data={character.location.name}
-						/>
 					</div>
 				</div>
+				<Location placement={character.location.url} />
 				<Badges keys={episodes} title={"Appears in: "} />
 			</div>
 			<Pagination id={id} />

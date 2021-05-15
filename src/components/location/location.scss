@@ -1,0 +1,14 @@
+.location {
+	h2 {
+		text-transform: uppercase;
+	}
+	
+	p {
+		margin-top: 16px;
+
+		span:first-child {
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+	}
+}

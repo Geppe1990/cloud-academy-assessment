@@ -21,17 +21,11 @@ export const getAll = (urls, callback, errorCallback) => {
 		.catch((error) => _errorsManager(error, errorCallback));
 };
 
-const _redirectHome = () => {
-	window.location.replace("/");
-};
-
 const _errorsManager = (error, callback) => {
 	if (error.response) {
 		console.log(error.response.data);
-		_redirectHome();
 	} else if (error.request) {
 		console.log(error.request);
-		_redirectHome();
 	} else {
 		console.log("Error", error.message);
 		callback(error.message);
