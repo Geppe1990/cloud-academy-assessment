@@ -19,15 +19,8 @@ const config = {
 				use: ["style-loader", "css-loader", "sass-loader"]
 			},
 			{
-				test: /\.jpg$/,
-				use: [
-					{
-						loader: "url-loader",
-						options: {
-							mimetype: "image/jpg"
-						}
-					}
-				]
+				test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+				use: [{ loader: "url-loader" }]
 			}
 		]
 	},
@@ -38,7 +31,7 @@ const config = {
 		}
 	},
 	devServer: {
-		contentBase: "dist",
+		contentBase: "public",
 		historyApiFallback: true
 	}
 };
