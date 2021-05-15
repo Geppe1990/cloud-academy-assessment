@@ -15,18 +15,21 @@ const Pagination = ({ id }) => {
 		getcurrentPage(id, setPages, setTotalCharacters, setErrorMessage);
 	}, [id]);
 
-	const _arrowManager = (direction) => {
-		if (!direction) {
+	const _pageManager = (direction, link, key) => {
+		if (!link) {
 			return;
 		}
 
 		const isPrev = direction == "prev";
-		const link = isPrev ? `/${parseInt(id) - 1}` : `/${parseInt(id) + 1}`;
+		const isNext = direction == "next";
+		const cls = isPrev || isNext ? `pagination__${direction}` : "";
 
 		return (
-			<li className={`pagination__${direction}`}>
-				<NavLink to={link} activeClassName="current">
-					{isPrev ? <FaChevronLeft /> : <FaChevronRight />}
+			<li className={cls} key={key}>
+				<NavLink to={`/${link}`} activeClassName="current">
+					{isPrev ? <FaChevronLeft /> : null}
+					{isNext ? <FaChevronRight /> : null}
+					{!isPrev && !isNext ? link : null}
 				</NavLink>
 			</li>
 		);
@@ -36,24 +39,15 @@ const Pagination = ({ id }) => {
 		return;
 	}
 
-	return (
+	return pages && pages.length > 0 ? (
 		<ul className="pagination">
-			{pages.length > 0 && hasPrev(id) ? _arrowManager("prev") : null}
-			{pages.map((page, index) => (
-				<li key={index}>
-					<NavLink
-						to={`/${parseInt(page.id)}`}
-						activeClassName="current"
-					>
-						{page.id}
-					</NavLink>
-				</li>
-			))}
-			{pages.length > 0 && hasNext(id, totalCharacters)
-				? _arrowManager("next")
+			{hasPrev(id) ? _pageManager("prev", `${parseInt(id) - 1}`) : null}
+			{pages.map((page, index) => _pageManager(null, page.id, index))}
+			{hasNext(id, totalCharacters)
+				? _pageManager("next", `${parseInt(id) + 1}`)
 				: null}
 		</ul>
-	);
+	) : null;
 };
 
 export default Pagination;
