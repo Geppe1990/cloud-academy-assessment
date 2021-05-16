@@ -18,3 +18,6 @@ export const getcurrentPage = (
 		callbackError
 	);
 };
+
+export const hasPrev = (id) => !(parseInt(id) <= 1);
+export const hasNext = (id, characters) => !(parseInt(id) == characters);

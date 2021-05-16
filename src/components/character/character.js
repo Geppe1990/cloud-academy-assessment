@@ -51,7 +51,9 @@ const Character = () => {
 						/>
 					</div>
 				</div>
-				<Location placement={character.location.url} />
+				{character.location.url ? (
+					<Location placement={character.location.url} />
+				) : null}
 				<Badges keys={episodes} title={"Appears in: "} />
 			</div>
 			<Pagination id={id} />
