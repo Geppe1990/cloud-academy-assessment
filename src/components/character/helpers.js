@@ -13,7 +13,7 @@ export const getUser = (
 		(response) => {
 			const episodesCalls = [];
 			response.data.episode.forEach((url) =>
-				episodesCalls.push(axios.get(url))
+				url ? episodesCalls.push(axios.get(url)) : null
 			);
 
 			callbackCharacter(response.data);
@@ -24,7 +24,7 @@ export const getUser = (
 };
 
 export const hasCharacter = (character) => {
-	return Object.keys(character).length == 0;
+	return Object.keys(character).length > 0;
 };
 
 export const hasError = (errorMessage) => {

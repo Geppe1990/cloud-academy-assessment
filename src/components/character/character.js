@@ -21,7 +21,7 @@ const Character = () => {
 		getUser(id, setCharacter, setEpisodes, setErrorMessage);
 	}, [id]);
 
-	if (hasCharacter(character)) {
+	if (!hasCharacter(character)) {
 		return <Notification message={"Loading..."} type={"alert"} />;
 	}
 

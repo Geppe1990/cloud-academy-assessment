@@ -4,21 +4,25 @@ export const hasPrev = (id) => !(parseInt(id) <= 1);
 export const hasNext = (id, characters) => !(parseInt(id) == characters);
 
 export const get = (url, callback, errorCallback) => {
-	axios
-		.get(url)
-		.then((response) => {
-			callback(response);
-		})
-		.catch((error) => _errorsManager(error, errorCallback));
+	if (url) {
+		axios
+			.get(url)
+			.then((response) => {
+				callback(response);
+			})
+			.catch((error) => _errorsManager(error, errorCallback));
+	}
 };
 
 export const getAll = (urls, callback, errorCallback) => {
-	axios
-		.all(urls)
-		.then((response) => {
-			callback(response);
-		})
-		.catch((error) => _errorsManager(error, errorCallback));
+	if (urls) {
+		axios
+			.all(urls)
+			.then((response) => {
+				callback(response);
+			})
+			.catch((error) => _errorsManager(error, errorCallback));
+	}
 };
 
 const _errorsManager = (error, callback) => {

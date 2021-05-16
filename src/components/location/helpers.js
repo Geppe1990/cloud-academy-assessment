@@ -9,3 +9,7 @@ export const getCurrentLocation = (url, callbackLocation, callbackError) => {
 		callbackError
 	);
 };
+
+export const hasLocation = (location) => {
+	return Object.keys(location).length > 0;
+};

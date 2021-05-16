@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./location.scss";
 import Label from "../label/label";
-import { getCurrentLocation } from "./helpers";
+import { getCurrentLocation, hasLocation } from "./helpers";
 
 const Location = ({ placement }) => {
 	const [location, setlocation] = useState({});
@@ -12,7 +12,11 @@ const Location = ({ placement }) => {
 	}, [placement]);
 
 	if (errorMessage && errorMessage.length != 0) {
-		return;
+		return <></>;
+	}
+
+	if (!hasLocation(location)) {
+		return <></>;
 	}
 
 	return (
