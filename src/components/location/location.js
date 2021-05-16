@@ -11,12 +11,8 @@ const Location = ({ placement }) => {
 		getCurrentLocation(placement, setlocation, setErrorMessage);
 	}, [placement]);
 
-	if (errorMessage && errorMessage.length != 0) {
-		return <></>;
-	}
-
-	if (!hasLocation(location)) {
-		return <></>;
+	if ((errorMessage && errorMessage.length != 0) || !hasLocation(location)) {
+		return null;
 	}
 
 	return (

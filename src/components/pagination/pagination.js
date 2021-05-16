@@ -17,7 +17,7 @@ const Pagination = ({ id }) => {
 
 	const _pageManager = (direction, link, key) => {
 		if (!link) {
-			return <></>;
+			return null;
 		}
 
 		const isPrev = direction == "prev";
@@ -36,7 +36,7 @@ const Pagination = ({ id }) => {
 	};
 
 	if (errorMessage && errorMessage.length != 0) {
-		return <></>;
+		return null;
 	}
 
 	return (
