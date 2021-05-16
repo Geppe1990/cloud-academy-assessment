@@ -28,7 +28,7 @@ export const getAll = (urls, callback, errorCallback) => {
 const _errorsManager = (error, callback) => {
 	if (error.response) {
 		console.log(error.response.data);
-		callback(error.message);
+		callback(error.response.data.error);
 	} else if (error.request) {
 		console.log(error.request);
 		callback(error.message);
