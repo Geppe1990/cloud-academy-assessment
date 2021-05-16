@@ -8,6 +8,9 @@
 	flex-direction: column;
 
 	&.error {
+		background: inherit;
+		display: flex;
+
 		span {
 			color: $red;
 		}

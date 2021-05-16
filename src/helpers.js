@@ -28,8 +28,10 @@ export const getAll = (urls, callback, errorCallback) => {
 const _errorsManager = (error, callback) => {
 	if (error.response) {
 		console.log(error.response.data);
+		callback(error.message);
 	} else if (error.request) {
 		console.log(error.request);
+		callback(error.message);
 	} else {
 		console.log("Error", error.message);
 		callback(error.message);

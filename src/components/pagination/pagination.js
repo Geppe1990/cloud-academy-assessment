@@ -39,7 +39,7 @@ const Pagination = ({ id }) => {
 		return <></>;
 	}
 
-	return pages && pages.length > 0 ? (
+	return (
 		<ul className="pagination">
 			{hasPrev(id) ? _pageManager("prev", `${parseInt(id) - 1}`) : null}
 			{pages.map((page, index) => _pageManager(null, page.id, index))}
@@ -47,7 +47,7 @@ const Pagination = ({ id }) => {
 				? _pageManager("next", `${parseInt(id) + 1}`)
 				: null}
 		</ul>
-	) : null;
+	);
 };
 
 export default Pagination;
