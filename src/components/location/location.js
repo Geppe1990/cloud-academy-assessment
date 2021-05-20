@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./location.scss";
-import Label from "../label/label";
 import { getCurrentLocation, hasLocation } from "./helpers";
 
 const Location = ({ placement }) => {
@@ -20,16 +19,30 @@ const Location = ({ placement }) => {
 	}
 
 	return (
-		<div id="location">
-			<Label tag={"h2"} data="Location"></Label>
-			<Label label={"Location: "} data={location.name} />
-			<Label label={"Dimension: "} data={location.dimension} />
-			<Label label={"Name: "} data={location.name} />
-			<Label label={"Type: "} data={location.type} />
-			<Label
-				label={"Residents: "}
-				data={location.residents ? location.residents.length : 0}
-			/>
+		<div id="location" className="card">
+			<div className="card-body">
+				<h2 className="card-title">Location</h2>
+				<p className="card-text">
+					<span className="card-title text-muted">Location: </span>
+					{location.name}
+				</p>
+				<p className="card-text">
+					<span className="card-title text-muted">Dimension: </span>
+					{location.dimension}
+				</p>
+				<p className="card-text">
+					<span className="card-title text-muted">Name: </span>
+					{location.name}
+				</p>
+				<p className="card-text">
+					<span className="card-title text-muted">Type: </span>
+					{location.type}
+				</p>
+				<p className="card-text">
+					<span className="card-title text-muted">Residents: </span>
+					{location.residents ? location.residents.length : 0}
+				</p>
+			</div>
 		</div>
 	);
 };

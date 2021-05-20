@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Label from "../label/label";
 import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
@@ -13,8 +12,6 @@ const Character = () => {
 	const [episodes, setEpisodes] = useState([]);
 	const [errorMessage, setErrorMessage] = useState("");
 	const { id } = useParams();
-
-	const _statusManager = (data) => (data ? <span></span> : null);
 
 	useEffect(() => {
 		getUser(id, setCharacter, setEpisodes, setErrorMessage);
@@ -30,32 +27,61 @@ const Character = () => {
 
 	return (
 		<>
-			<div id="character">
-				<Label data={character.name} tag={"h1"} />
-
-				<div>
-					<img src={character.image} alt={character.name} />
-					<div>
-						<Label
-							label={"Status: "}
-							data={character.status}
-							additionalData={_statusManager(character.status)}
-						/>
-						<Label label={"Species: "} data={character.species} />
-						<Label label={"Type: "} data={character.type} />
-						<Label label={"Gender: "} data={character.gender} />
-						<Label
-							label={"Origin: "}
-							data={character.origin.name}
-						/>
+			<div id="character" className="my-5">
+				<div className="container">
+					<div className="row">
+						<div className="col-sm-4">
+							<div className="card h-100">
+								<img
+									className="card-img-top"
+									src={character.image}
+									alt="Card image cap"
+								/>
+								<div className="card-body">
+									<h5 className="card-title">
+										{character.name}
+									</h5>
+									<p className="card-text">
+										<span className="card-title text-muted">
+											Status:
+										</span>{" "}
+										{character.status}
+									</p>
+									<p className="card-text">
+										<span className="card-title text-muted">
+											Species:
+										</span>{" "}
+										{character.species}
+									</p>
+									<p className="card-text">
+										<span className="card-title text-muted">
+											Gender:
+										</span>{" "}
+										{character.gender}
+									</p>
+									<p className="card-text">
+										<span className="card-title text-muted">
+											Origin:
+										</span>{" "}
+										{character.origin.name}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div className="col-sm-8">
+							{character.location.url ? (
+								<Location placement={character.location.url} />
+							) : null}
+							<Badges keys={episodes} title={"Appears in: "} />
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-sm-12">
+							<Pagination id={id} />
+						</div>
 					</div>
 				</div>
-				{character.location.url ? (
-					<Location placement={character.location.url} />
-				) : null}
-				<Badges keys={episodes} title={"Appears in: "} />
 			</div>
-			<Pagination id={id} />
 		</>
 	);
 };

@@ -1,18 +1,23 @@
 import React from "react";
 import "./badges.scss";
-import Label from "../label/label";
 
 const Badges = ({ keys, title }) => {
 	return (
-		<div id="badges">
-			<Label tag={"h2"} data={title}></Label>
-			{keys.length > 0
-				? keys.map((key, index) => (
-						<span key={index} data-episode={key.data.episode}>
-							{key.data.name}
-						</span>
-				  ))
-				: null}
+		<div id="badges" className="card mt-2">
+			<div className="card-body">
+				<h2 className="card-title">{title}</h2>
+				{keys.length > 0
+					? keys.map((key, index) => (
+							<span
+								className="badge badge-secondary mr-1"
+								key={index}
+								data-episode={key.data.episode}
+							>
+								{key.data.name}
+							</span>
+					  ))
+					: null}
+			</div>
 		</div>
 	);
 };
