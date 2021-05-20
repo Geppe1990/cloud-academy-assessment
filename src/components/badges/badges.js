@@ -4,7 +4,7 @@ import Label from "../label/label";
 
 const Badges = ({ keys, title }) => {
 	return (
-		<div className="badges">
+		<div id="badges">
 			<Label tag={"h2"} data={title}></Label>
 			{keys.length > 0
 				? keys.map((key, index) => (

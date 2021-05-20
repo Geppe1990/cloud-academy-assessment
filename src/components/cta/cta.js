@@ -4,7 +4,7 @@ import "./cta.scss";
 
 const Cta = ({ text, link }) => {
 	return (
-		<Link className="cta" to={link}>
+		<Link id="cta" to={link}>
 			{text}
 		</Link>
 	);

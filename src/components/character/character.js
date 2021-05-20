@@ -14,8 +14,7 @@ const Character = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const { id } = useParams();
 
-	const _statusManager = (data) =>
-		data ? <span className={`status ${data.toLowerCase()}`}></span> : null;
+	const _statusManager = (data) => (data ? <span></span> : null);
 
 	useEffect(() => {
 		getUser(id, setCharacter, setEpisodes, setErrorMessage);
@@ -30,13 +29,13 @@ const Character = () => {
 	}
 
 	return (
-		<div className="container">
-			<div className="character">
+		<>
+			<div id="character">
 				<Label data={character.name} tag={"h1"} />
 
-				<div className="character__wrapper">
+				<div>
 					<img src={character.image} alt={character.name} />
-					<div className="character__data">
+					<div>
 						<Label
 							label={"Status: "}
 							data={character.status}
@@ -57,7 +56,7 @@ const Character = () => {
 				<Badges keys={episodes} title={"Appears in: "} />
 			</div>
 			<Pagination id={id} />
-		</div>
+		</>
 	);
 };
 

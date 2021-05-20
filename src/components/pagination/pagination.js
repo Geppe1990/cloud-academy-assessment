@@ -21,10 +21,9 @@ const Pagination = ({ id }) => {
 
 		const isPrev = direction == "prev";
 		const isNext = direction == "next";
-		const cls = isPrev || isNext ? `pagination__${direction}` : "";
 
 		return (
-			<li className={cls} key={key}>
+			<li key={key}>
 				<NavLink to={`/${link}`} activeClassName="current">
 					{isPrev ? <FaChevronLeft /> : null}
 					{isNext ? <FaChevronRight /> : null}
@@ -39,7 +38,7 @@ const Pagination = ({ id }) => {
 	}
 
 	return (
-		<ul className="pagination">
+		<ul id="pagination">
 			{hasPrev(id) ? _pageManager("prev", `${parseInt(id) - 1}`) : null}
 			{pages.map((page, index) => _pageManager(null, page.id, index))}
 			{hasNext(id, totalCharacters)

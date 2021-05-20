@@ -20,7 +20,7 @@ const Location = ({ placement }) => {
 	}
 
 	return (
-		<div className="location">
+		<div id="location">
 			<Label tag={"h2"} data="Location"></Label>
 			<Label label={"Location: "} data={location.name} />
 			<Label label={"Dimension: "} data={location.dimension} />

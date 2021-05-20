@@ -5,11 +5,9 @@ import Label from "../label/label";
 
 const Home = () => {
 	return (
-		<div className="container">
-			<div className="home">
-				<Label tag={"h1"} data={"Rick & Morty "}></Label>
-				<Cta text={"Go to the first character"} link={"/1"} />
-			</div>
+		<div id="home">
+			<Label tag={"h1"} data={"Rick & Morty "}></Label>
+			<Cta text={"Go to the first character"} link={"/1"} />
 		</div>
 	);
 };

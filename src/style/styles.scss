@@ -1,60 +1,60 @@
-@import "./variables";
-@import "./typography";
+// @import "./variables";
+// @import "./typography";
 
-html,
-body,
-#app {
-	min-height: 100%;
-}
+// html,
+// body,
+// #app {
+// 	min-height: 100%;
+// }
 
-body {
-	background: url("../images/bg.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	margin: 10px;
+// body {
+// 	background: url("../images/bg.jpg");
+// 	background-repeat: no-repeat;
+// 	background-size: cover;
+// 	margin: 10px;
 	
-	@media (min-width: $l) {
-		background-position: 50% 50%;
-	}
-}
+// 	@media (min-width: $l) {
+// 		background-position: 50% 50%;
+// 	}
+// }
 
-.loading {
-	color: $white;
-	margin: 0 auto;
-}
+// .loading {
+// 	color: $white;
+// 	margin: 0 auto;
+// }
 
-.hidden {
-	display: none !important;
-}
+// .hidden {
+// 	display: none !important;
+// }
 
-.container {
-	width: 100%;
-	margin-right: auto;
-	margin-left: auto;
+// .container {
+// 	width: 100%;
+// 	margin-right: auto;
+// 	margin-left: auto;
 
-	@media (min-width: $sm) {
-		max-width: 540px;
-	}
+// 	@media (min-width: $sm) {
+// 		max-width: 540px;
+// 	}
 
-	@media (min-width: $md) {
-		max-width: 720px;
-	}
+// 	@media (min-width: $md) {
+// 		max-width: 720px;
+// 	}
 
-	@media (min-width: $l) {
-		max-width: 960px;
-	}
+// 	@media (min-width: $l) {
+// 		max-width: 960px;
+// 	}
 
-	@media (min-width: $xl) {
-		max-width: 1140px;
-	}
-}
+// 	@media (min-width: $xl) {
+// 		max-width: 1140px;
+// 	}
+// }
 
-.error {
-	display: inline-block;
-	color: $red;
-	background-color: $white;
-	padding: 5px;
-	margin: 5px;
-	border-radius: 2px;
-	font-weight: bold;
-}
+// .error {
+// 	display: inline-block;
+// 	color: $red;
+// 	background-color: $white;
+// 	padding: 5px;
+// 	margin: 5px;
+// 	border-radius: 2px;
+// 	font-weight: bold;
+// }

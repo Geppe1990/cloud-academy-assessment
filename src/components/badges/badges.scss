@@ -1,48 +1,48 @@
-@import "/src/style/variables";
+// @import "/src/style/variables";
 
-.badges {
-	text-align: center;
+// .badges {
+// 	text-align: center;
 
-	h2 {
-		text-transform: uppercase;
-	}
+// 	h2 {
+// 		text-transform: uppercase;
+// 	}
 
-	[data-episode] {
-		display: inline-block;
-		padding: 3px 5px;
-		font-size: 75%;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		white-space: nowrap;
-		vertical-align: baseline;
-		border-radius: 4px;
-		margin-right: 5px;
-		margin-bottom: 5px;
-		background-color: $black;
+// 	[data-episode] {
+// 		display: inline-block;
+// 		padding: 3px 5px;
+// 		font-size: 75%;
+// 		font-weight: 700;
+// 		line-height: 1;
+// 		text-align: center;
+// 		white-space: nowrap;
+// 		vertical-align: baseline;
+// 		border-radius: 4px;
+// 		margin-right: 5px;
+// 		margin-bottom: 5px;
+// 		background-color: $black;
 
-		&[data-episode^="S01"] {
-			color: $white;
-			background-color: $orange;
-			order: 1;
-		}
+// 		&[data-episode^="S01"] {
+// 			color: $white;
+// 			background-color: $orange;
+// 			order: 1;
+// 		}
 	
-		&[data-episode^="S02"] {
-			color: $white;
-			background: $brown;
-			order: 2;
-		}
+// 		&[data-episode^="S02"] {
+// 			color: $white;
+// 			background: $brown;
+// 			order: 2;
+// 		}
 		
-		&[data-episode^="S03"] {
-			color: $white;
-			background: $green;
-			order: 3;
-		}
+// 		&[data-episode^="S03"] {
+// 			color: $white;
+// 			background: $green;
+// 			order: 3;
+// 		}
 		
-		&[data-episode^="S04"] {
-			color: $white;
-			background: $pink;
-			order: 4;
-		}
-	}
-}	
+// 		&[data-episode^="S04"] {
+// 			color: $white;
+// 			background: $pink;
+// 			order: 4;
+// 		}
+// 	}
+// }	
