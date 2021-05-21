@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { get } from "../../helpers";
 import "./location.scss";
-import { getCurrentLocation, hasLocation } from "./helpers";
 
 const Location = ({ placement }) => {
 	const [location, setlocation] = useState({});
 	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-		getCurrentLocation(placement, setlocation, setErrorMessage);
+		getCurrentLocation();
 	}, [placement]);
+
+	const getCurrentLocation = () => {
+		get(
+			placement,
+			(response) => {
+				setlocation(response.data);
+			},
+			setErrorMessage
+		);
+	};
+
+	const hasLocation = (location) => {
+		return Object.keys(location).length > 0;
+	};
 
 	if (errorMessage && errorMessage.length != 0) {
 		return <></>;

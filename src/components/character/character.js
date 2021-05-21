@@ -4,7 +4,9 @@ import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
 import Location from "../location/location";
-import { getUser, hasCharacter, hasError } from "./helpers";
+import { endpoints } from "../../variables";
+import { get, getAll } from "../../helpers";
+import axios from "axios";
 import "./character.scss";
 
 const Character = () => {
@@ -13,8 +15,43 @@ const Character = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const { id } = useParams();
 
+	const hasCharacter = (character) => {
+		return Object.keys(character).length > 0;
+	};
+
+	const hasError = (errorMessage) => {
+		return errorMessage && errorMessage.length != 0;
+	};
+
+	const getUser = () => {
+		get(
+			`${endpoints.CHARACTER}${id}`,
+			(response) => {
+				const episodesCalls = [];
+
+				response.data.episode.forEach((url) =>
+					url ? episodesCalls.push(axios.get(url)) : null
+				);
+
+				setCharacter(response.data);
+				_getEpisodes(episodesCalls);
+			},
+			setErrorMessage
+		);
+	};
+
+	const _getEpisodes = (urls) => {
+		getAll(
+			urls,
+			(response) => {
+				setEpisodes(response);
+			},
+			setErrorMessage
+		);
+	};
+
 	useEffect(() => {
-		getUser(id, setCharacter, setEpisodes, setErrorMessage);
+		getUser();
 	}, [id]);
 
 	if (!hasCharacter(character) && !hasError(errorMessage)) {
@@ -32,39 +69,51 @@ const Character = () => {
 					<div className="row">
 						<div className="col-sm-4">
 							<div className="card h-100">
-								<img
-									className="card-img-top"
-									src={character.image}
-									alt="Card image cap"
-								/>
+								{character.image ? (
+									<img
+										className="card-img-top"
+										src={character.image}
+										alt="Card image cap"
+									/>
+								) : null}
 								<div className="card-body">
-									<h5 className="card-title">
-										{character.name}
-									</h5>
-									<p className="card-text">
-										<span className="card-title text-muted">
-											Status:
-										</span>{" "}
-										{character.status}
-									</p>
-									<p className="card-text">
-										<span className="card-title text-muted">
-											Species:
-										</span>{" "}
-										{character.species}
-									</p>
-									<p className="card-text">
-										<span className="card-title text-muted">
-											Gender:
-										</span>{" "}
-										{character.gender}
-									</p>
-									<p className="card-text">
-										<span className="card-title text-muted">
-											Origin:
-										</span>{" "}
-										{character.origin.name}
-									</p>
+									{character.name ? (
+										<h5 className="card-title">
+											{character.name}
+										</h5>
+									) : null}
+									{character.status ? (
+										<p className="card-text">
+											<span className="card-title text-muted">
+												Status:
+											</span>{" "}
+											{character.status}
+										</p>
+									) : null}
+									{character.species ? (
+										<p className="card-text">
+											<span className="card-title text-muted">
+												Species:
+											</span>{" "}
+											{character.species}
+										</p>
+									) : null}
+									{character.gender ? (
+										<p className="card-text">
+											<span className="card-title text-muted">
+												Gender:
+											</span>{" "}
+											{character.gender}
+										</p>
+									) : null}
+									{character.origin.name ? (
+										<p className="card-text">
+											<span className="card-title text-muted">
+												Origin:
+											</span>{" "}
+											{character.origin.name}
+										</p>
+									) : null}
 								</div>
 							</div>
 						</div>
@@ -77,7 +126,7 @@ const Character = () => {
 					</div>
 					<div className="row">
 						<div className="col-sm-12">
-							<Pagination id={id} />
+							<Pagination id={parseInt(id)} />
 						</div>
 					</div>
 				</div>
