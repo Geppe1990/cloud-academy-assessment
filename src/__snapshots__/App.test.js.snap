@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match the snapshot 1`] = `
+<div
+  id="home"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-12 text-center"
+      >
+        <h1>
+          Rick & Morty
+        </h1>
+        <a
+          className="btn btn-primary"
+          href="/1"
+          onClick={[Function]}
+        >
+          Go to the first character
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

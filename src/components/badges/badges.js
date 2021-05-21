@@ -2,6 +2,10 @@ import React from "react";
 import "./badges.scss";
 
 const Badges = ({ keys, title }) => {
+	if (!keys) {
+		return;
+	}
+
 	return (
 		<div id="badges" className="card mt-2">
 			<div className="card-body">
