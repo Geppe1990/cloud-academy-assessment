@@ -4,6 +4,7 @@ import Badges from "../badges/badges";
 import Pagination from "../pagination/pagination";
 import Notification from "../notification/notification";
 import Location from "../location/location";
+import Info from "../info/info";
 import { endpoints } from "../../variables";
 import { get, getAll } from "../../helpers";
 import axios from "axios";
@@ -15,11 +16,11 @@ const Character = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const { id } = useParams();
 
-	const hasCharacter = (character) => {
+	const hasCharacter = () => {
 		return Object.keys(character).length > 0;
 	};
 
-	const hasError = (errorMessage) => {
+	const hasError = () => {
 		return errorMessage && errorMessage.length != 0;
 	};
 
@@ -68,54 +69,7 @@ const Character = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col-sm-4">
-							<div className="card h-100">
-								{character.image ? (
-									<img
-										className="card-img-top"
-										src={character.image}
-										alt="Card image cap"
-									/>
-								) : null}
-								<div className="card-body">
-									{character.name ? (
-										<h5 className="card-title">
-											{character.name}
-										</h5>
-									) : null}
-									{character.status ? (
-										<p className="card-text">
-											<span className="card-title text-muted">
-												Status:
-											</span>{" "}
-											{character.status}
-										</p>
-									) : null}
-									{character.species ? (
-										<p className="card-text">
-											<span className="card-title text-muted">
-												Species:
-											</span>{" "}
-											{character.species}
-										</p>
-									) : null}
-									{character.gender ? (
-										<p className="card-text">
-											<span className="card-title text-muted">
-												Gender:
-											</span>{" "}
-											{character.gender}
-										</p>
-									) : null}
-									{character.origin.name ? (
-										<p className="card-text">
-											<span className="card-title text-muted">
-												Origin:
-											</span>{" "}
-											{character.origin.name}
-										</p>
-									) : null}
-								</div>
-							</div>
+							<Info character={character} />
 						</div>
 						<div className="col-sm-8">
 							{character.location.url ? (

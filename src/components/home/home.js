@@ -1,12 +1,11 @@
 import React from "react";
 import "./home.scss";
 import Cta from "../cta/cta";
-import Label from "../label/label";
 
 const Home = () => {
 	return (
 		<div id="home">
-			<Label tag={"h1"} data={"Rick & Morty "}></Label>
+			<h1>Rick & Morty</h1>
 			<Cta text={"Go to the first character"} link={"/1"} />
 		</div>
 	);

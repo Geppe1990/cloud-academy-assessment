@@ -25,12 +25,7 @@ const Pagination = ({ id }) => {
 		const isActive = pathname === `/${link}`;
 
 		return (
-			<li
-				key={key}
-				className={`page-item ${
-					isActive && !direction ? "active" : ""
-				}`}
-			>
+			<li key={key} className={`page-item ${isActive ? "active" : ""}`}>
 				<Link to={`/${link}`} className="page-link">
 					{isPrev ? <FaChevronLeft /> : null}
 					{isNext ? <FaChevronRight /> : null}

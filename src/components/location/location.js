@@ -37,23 +37,23 @@ const Location = ({ placement }) => {
 			<div className="card-body">
 				<h2 className="card-title">Location</h2>
 				<p className="card-text">
-					<span className="card-title text-muted">Location: </span>
+					<b className="card-title text-muted">Location: </b>
 					{location.name}
 				</p>
 				<p className="card-text">
-					<span className="card-title text-muted">Dimension: </span>
+					<b className="card-title text-muted">Dimension: </b>
 					{location.dimension}
 				</p>
 				<p className="card-text">
-					<span className="card-title text-muted">Name: </span>
+					<b className="card-title text-muted">Name: </b>
 					{location.name}
 				</p>
 				<p className="card-text">
-					<span className="card-title text-muted">Type: </span>
+					<b className="card-title text-muted">Type: </b>
 					{location.type}
 				</p>
 				<p className="card-text">
-					<span className="card-title text-muted">Residents: </span>
+					<b className="card-title text-muted">Residents: </b>
 					{location.residents ? location.residents.length : 0}
 				</p>
 			</div>
