@@ -1,12 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./home.scss";
-import Cta from "../cta/cta";
 
 const Home = () => {
 	return (
 		<div id="home">
-			<h1>Rick & Morty</h1>
-			<Cta text={"Go to the first character"} link={"/1"} />
+			<div className="container">
+				<div className="row">
+					<div className="col-sm-12 text-center">
+						<h1>Rick & Morty</h1>
+						<Link className="btn btn-primary" to="/1">
+							Go to the first character
+						</Link>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
