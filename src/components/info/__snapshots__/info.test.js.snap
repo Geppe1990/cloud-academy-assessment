@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match the snapshot 1`] = `
+<div
+  className="card h-100"
+>
+  <img
+    alt="Card image cap"
+    className="card-img-top"
+    src="https://rickandmortyapi.com/api/character/avatar/13.jpeg"
+  />
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    >
+      Alien Googah
+    </h5>
+    <p
+      className="card-text"
+    >
+      <b
+        className="card-title text-muted"
+      >
+        Status:
+      </b>
+       
+      unknown
+    </p>
+    <p
+      className="card-text"
+    >
+      <b
+        className="card-title text-muted"
+      >
+        Species:
+      </b>
+       
+      Alien
+    </p>
+    <p
+      className="card-text"
+    >
+      <b
+        className="card-title text-muted"
+      >
+        Gender:
+      </b>
+       
+      unknown
+    </p>
+    <p
+      className="card-text"
+    >
+      <b
+        className="card-title text-muted"
+      >
+        Origin:
+      </b>
+       
+      unknown
+    </p>
+  </div>
+</div>
+`;
